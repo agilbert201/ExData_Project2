@@ -1,5 +1,5 @@
 ## Exploratory Data Analysis Project 2
-## Plot 3
+## Plot 4
 ## Answer the question:
 ##   Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?
 

@@ -26,5 +26,5 @@ barplot(emissions_by_year$totalpm25, names = emissions_by_year$year, main = "Tot
         xlab="Year", ylab=expression("Total " * PM[2.5]), col=c("blue"), yaxt="n")
 my.axis <-paste(axTicks(2) / 1000000,"M",sep=" ")
 axis(2,at=axTicks(2), labels=my.axis)
-dev.off();
+dev.off()
 
