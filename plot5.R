@@ -1,5 +1,5 @@
 ## Exploratory Data Analysis Project 2
-## Plot 4
+## Plot 5
 ## Answer the question:
 ##  How have emissions from motor vehicle sources changed from 1999–2008 in Baltimore City?
 
@@ -41,7 +41,7 @@ label_map = c("Mobile - On-Road Diesel Heavy Duty Vehicles" = "Diesel Heavy",
               "Mobile - On-Road Gasoline Heavy Duty Vehicles" = "Gasoline Heavy",
               "Mobile - On-Road Gasoline Light Duty Vehicles" = "Gasoline Light")
 png(file = "plot5.png", bg = "white", width=600)
-p <- ggplot(year_and_type_sums, aes(x=year, y=total, group=type, color=type))
+p <- ggplot(year_and_sector_sums, aes(x=year, y=total, group=EI.Sector, color=EI.Sector))
 p + geom_line() +
     labs(title = "Motor Vehicle Emission Trends (Baltimore)", x = "Year", y = expression("Total " * PM[2.5])) +
     guides(color = guide_legend("Sector")) +

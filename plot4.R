@@ -30,16 +30,18 @@ only_coal_j <- mutate(only_coal_s, SCC = as.character(SCC))
 ## Do the join
 coal_comb_data <- inner_join(NEI, only_coal_j, by=c('SCC'))
 
-## Show each source contribution to annual total
-png(file = "plot4.png", bg = "white")
-p <- ggplot(sum_coal_comb_data_by_year, aes(x = year, y = total, fill = year))
-            
-p + geom_bar(stat = "identity") +
-    labs(title = "Total Combustible Coal Emmissions (US)", x = "Year", y = expression("Total " * PM[2.5])) +
-    guides(fill = guide_legend(title = "Year", override.aes = c("1", "2", "3", "4"))) +
-    scale_fill_continuous(breaks = sum_coal_comb_data_by_year$year) +
-    scale_y_continuous(labels = comma) +
-    scale_x_continuous(breaks = sum_coal_comb_data_by_year$year)
-    #scale_x_continuous(breaks=distinct_years$year)
+## Group and Summarise
+by_year_and_sector <- group_by(coal_comb_data, year, EI.Sector)
+year_and_sector_sums <- summarise(by_year_and_sector, total = sum(Emissions))
+distinct_years <- distinct(select(year_and_sector_sums))
+
+png(file = "plot4.png", bg = "white", width = 800)
+p1 <- ggplot(year_and_sector_sums, aes(x = year, y = total, fill = EI.Sector))
+p1 <- p1 + geom_bar(stat = "identity")
+p1 <- p1 + labs(title = "Total Combustible Coal Emissions (US)", x = "Year", y = expression("Total " * PM[2.5]))
+p1 <- p1 + scale_y_continuous(labels = comma)
+p1 <- p1 + scale_x_continuous(breaks = year_and_sector_sums$year)
+p1 <- p1 + guides(fill = guide_legend("Sector"))
+p1
 dev.off()
 
