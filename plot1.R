@@ -20,9 +20,11 @@ SCC <- readRDS(file.path("data", "Source_Classification_Code.rds"))
 by_year <- group_by(NEI, year)
 emissions_by_year <- summarise(by_year, totalpm25 = sum(Emissions))
 
+## Create Bar Chart with Total PM25 By Year
 png(file = "plot1.png", bg = "white")
-barplot(emissions_by_year$totalpm25, names = emissions_by_year$year, 
+barplot(emissions_by_year$totalpm25, names = emissions_by_year$year, main = "Total By Year",
         xlab="Year", ylab=expression("Total " * PM[2.5]), col=c("blue"), yaxt="n")
 my.axis <-paste(axTicks(2) / 1000000,"M",sep=" ")
 axis(2,at=axTicks(2), labels=my.axis)
 dev.off();
+
