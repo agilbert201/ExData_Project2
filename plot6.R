@@ -40,9 +40,12 @@ by_year_and_city <- group_by(with_city, year, city)
 year_and_city_sums <- summarise(by_year_and_city, total = sum(Emissions))
 distinct_years <- distinct(select(year_and_city_sums))
 
+png(file = "plot6.png", bg = "white", width=600)
 p <- ggplot(year_and_city_sums, aes(x=year, y=total, group=city, color=city))
 p <- p + geom_line()
 p <- p + labs(title = "Motor Vehicle Emission Trends (Baltimore vs LA)", x = "Year", y = expression("Total " * PM[2.5]))
 p <- p + guides(color = guide_legend("City"))
 p <- p + scale_x_continuous(breaks=distinct_years$year)
+p
+dev.off()
 
