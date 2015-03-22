@@ -26,7 +26,7 @@ only_vehicles_s <- select(only_vehicles, SCC, Short.Name, EI.Sector)
 only_vehicles_j <- mutate(only_vehicles_s, SCC = as.character(SCC))
 
 ## Filter to Baltimore MD
-baltimore_only <- filter(NEI, fips == 24510)
+baltimore_only <- filter(NEI, fips == "24510")
 
 ## Do the join
 baltimore_vehicle_data <- inner_join(baltimore_only, only_vehicles_j, by=c('SCC'))

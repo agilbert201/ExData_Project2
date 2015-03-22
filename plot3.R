@@ -19,7 +19,7 @@ SCC <- readRDS(file.path("data", "Source_Classification_Code.rds"))
 ## to prove this one can run 'distinct(select(NEI, Pollutant))'
 
 ## Filter to Baltimore MD
-baltimore_only <- filter(NEI, fips == 24510)
+baltimore_only <- filter(NEI, fips == "24510")
 
 ## Group by year and summarise each type
 by_year_and_type <- group_by(baltimore_only, year, type)
